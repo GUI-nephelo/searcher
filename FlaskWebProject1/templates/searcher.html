@@ -1,0 +1,189 @@
+﻿{% extends "layout.html" %}
+
+
+{% block content %}
+<div class="jumbotron">
+    <div class="row" id="row">
+        <div class="col-md-1">
+            <div class="btn-group dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <div id="dn">区县</div>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:setDistrict(110108,'海淀区')">海淀区</a></li>
+                    <li><a href="javascript:setDistrict(110107,'石景山区')">石景山区</a></li>
+                    <li><a href="javascript:setDistrict(110109,'门头沟区')">门头沟区</a></li>
+                    <li><a href="javascript:setDistrict(110120,'燕山区')">燕山区</a></li>
+                    <li><a href="javascript:setDistrict(110106,'丰台区')">丰台区</a></li>
+                    <li><a href="javascript:setDistrict(110105,'朝阳区')">朝阳区</a></li>
+                    <li><a href="javascript:setDistrict(110102,'西城区')">西城区</a></li>
+                    <li><a href="javascript:setDistrict(110101,'东城区')">东城区</a></li>
+                    <li><a href="javascript:setDistrict(110114,'昌平区')">昌平区</a></li>
+                    <li><a href="javascript:setDistrict(110115,'大兴区')">大兴区</a></li>
+                    <li><a href="javascript:setDistrict(110116,'怀柔区')">怀柔区</a></li>
+                    <li><a href="javascript:setDistrict(110117,'平谷区')">平谷区</a></li>
+                    <li><a href="javascript:setDistrict(110111,'房山区')">房山区</a></li>
+                    <li><a href="javascript:setDistrict(110112,'通州区')">通州区</a></li>
+                    <li><a href="javascript:setDistrict(110113,'顺义区')">顺义区</a></li>
+                    <li><a href="javascript:setDistrict(110229,'延庆区')">延庆区</a></li>
+                    <li><a href="javascript:setDistrict(110228,'密云区')">密云区</a></li>
+                    <li><a href="javascript:setDistrict(110000,'北京市')">北京市</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">毕业年份:</span>
+                <input type="text" class="form-control" placeholder="2022" disabled="disabled" id="grade" value="2022"/>
+                <span class="input-group-btn">
+                    <div class="btn-group-vertical btn-group-xs">
+                        <button type="button" class="btn btn-default" onclick="$('#grade').attr('value',parseInt($('#grade').val()) + 1)">&uArr;</button>
+                        <button type="button" class="btn btn-default" onclick="$('#grade').attr('value',parseInt($('#grade').val()) - 1)">&dArr;</button>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">教育ID:</span>
+                <input type="text" class="form-control" placeholder="10174389" id="uid" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" onclick="search()">搜索</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4>无服务器模式</h4>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><p class="panel-title" id="pSn">搜索中。。。</p></div>
+            <div class="panel-body">
+                <img id="pSp" src="https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443" />
+            </div>
+            <ul class="list-group">
+                <content class="list-group-item">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-success" role="progressbar"
+                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                             id="pPrg">
+                            
+                        </div>
+                    </div>
+        
+                </content>
+            </ul>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><p class="panel-title" id="mSn">搜索中。。。</p></div>
+            <div class="panel-body">
+                <img id="mSp" src="https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443" />
+            </div>
+            <ul class="list-group">
+                <content class="list-group-item">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-success" role="progressbar"
+                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                             id="mPrg">
+                        </div>
+                    </div>
+                </content>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading"><p class="panel-title" id="hSn">搜索中。。。</p></div>
+            <div class="panel-body">
+                <img id="hSp" src="https://qlogo3.store.qq.com/qzone/1736319094/1736319094/100?1594915443" />
+            </div>
+            <ul class="list-group">
+                <content class="list-group-item">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-success" role="progressbar"
+                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                             id="hPrg">
+                        </div>
+                    </div>
+
+                </content>
+            </ul>
+        </div>
+    </div>
+    
+</div>
+<script src="./static/scripts/searcher.js"></script>
+<script>
+    var ss = {}
+
+    function setDistrict(a, d) {
+        $("#dn").text(d);
+        $.ajax({
+            type: "get",
+            url: "get_schools?district=" + a,
+            dataType: "json",
+            success: function (data) {
+                //alert(data.length);
+                ss = data;
+            }
+        });
+    }
+    var baseUrl1 = "http://211.153.82.232/cmisfolder/photos/{level}/{grade}/{sid}/{uid}.JPG";
+    var baseUrl2 = "http://211.153.82.232/cmisfolder/photos/{level}/{grade}/{sid}/{uid}.jpg";
+    function main_re() {
+        var sSearched = [ 0, 0, 0 ];
+        for (var i in { "1": 1 }) {//level 小学
+            var t1 = new Date().getTime(), t2;
+            for (var ii in [ 1, 2, 3]) {
+                sub_pic(baseUrl1.format({
+                    "level": "201200"+ii, "grade": $("#grade").val(), "sid": i, "uid": $("#id").val()
+                }),
+                    (status, ev, url) => {
+                        if (!sSearchered[ii - 1]) {
+                            if (status) {
+                                $("#pSn").text(ss[i]);
+                                $("#pSp").attr("src", url);
+                                sSearchered[ii-1] = 1;
+                            } else {
+                                $("#pSn").text("未搜到");
+                            }
+                        }
+                    }
+                );
+                sub_pic(baseUrl2.format({
+                    "level": "201200"+ii, "grade": $("#grade").val(), "sid": i, "uid": $("#id").val()
+                }),
+                    (status, ev, url) => {
+                        if (!sSearchered[ii - 1]) {
+                            if (status) {
+                                $("#pSn").text(ss[i]);
+                                $("#pSp").attr("src", url);
+                                sSearchered[ii - 1] = 1;
+                            } else {
+                                $("#pSn").text("未搜到");
+                            }
+                        }
+                    }
+                );
+            }
+            
+            //sleep(50);
+        }
+        
+    }
+    function search() {
+        main_re();
+    }
+    
+</script>
+
+
+{% endblock %}
